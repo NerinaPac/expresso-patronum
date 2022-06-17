@@ -10,6 +10,16 @@
     <%- include('partials/nav.ejs') %>
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
+
+
+    <form action="/buscar">
+      <label>
+        Buscar libro:
+      <input type="search" name="termino"> <!-- name es lo que aparece en la url segun lo que escribe el usuario Ej: 
+      http://localhost:3000/buscar.js?termino=potter -->
+      </label>
+      <input type="submit" value="Buscar">
+    </form>
     
   </body>
 </html>
