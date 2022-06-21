@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <title>Agregar Libro</title>
+</head>
+<body>
+    <h1>Contactos</h1>
+    <%- include('../partials/nav.ejs') %>
+
+    <form class="form-agregar" action="/agregar-libro" method="post">
+        <label class="form-agregar_label">
+            Título:
+            <input type="text" name="titulo">
+        </label>
+        <label class="form-agregar_label">
+            Autor:
+            <input type="text" name="autor">
+        </label>
+        <label class="form-agregar_label">
+            Precio:
+            <input type="number" name="precio">
+        </label>
+        <input type="submit" value="Agregar libro">
+    </form>
+
+</body>
+</html>
