@@ -8,6 +8,11 @@ var app = require('../app');
 var debug = require('debug')('expresso:server');
 var http = require('http');
 
+//Importamos todos los modelos de nuestra base de datos, y los guardamos en esta variable.
+// Automaticamente se importa el achivo index, solo por llamarse index. 
+// No se importa libro y autor, porque el archivo index ya tiene el codigo para importalo.
+const db = require('../models');
+
 /**
  * Get port from environment and store in Express.
  */
@@ -25,9 +30,14 @@ var server = http.createServer(app);
  * Listen on provided port, on all network interfaces.
  */
 
-server.listen(port);
-server.on('error', onError);
-server.on('listening', onListening);
+//Coneccion a base de datos, seguido de then, el cual permite que primero cargue la base de datos antes de levantar el Server.
+// Por eso se utiliza la funcion anonima.
+db.sequelize.sync().then(() => {
+  server.listen(port);
+  server.on('error', onError);
+  server.on('listening', onListening);
+
+});
 
 /**
  * Normalize a port into a number, string, or false.
