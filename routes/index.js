@@ -1,10 +1,23 @@
 var express = require('express');
 var router = express.Router();
 
+const api = require('../api');
+
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Jeloouuuuu!' });
+router.get('/', async (req, res) => {
+  // Llamamos a la funcion getBooks que esta dentro de api
+  const libros = await api.getBooks();
+  console.log(libros);
+  //res.render('index', { title: 'Jeloouuuuu!' });
+  res.send(libros);
 });
+
+// Si soy un servicio API como openweathermap, me sirve devolver un json (send(libros))
+// monorepo (un solo repositorio) fronter/backen. 
+// monolito (malo): cuando un monorepo sale mal, se convierte en un monolito. Un repo que hace 55 cosas distintas.
+//Esto es backen. Se puede hacer la front en otro framework
+
+//ejs es una herramieta de backer, no de fronten. Se queda muy limitada.
 
 /* GET agregar. */
 router.get('/agregar', (req, res) => {
