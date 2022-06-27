@@ -18,6 +18,16 @@ const getBooks = async () => {
 
 }
 
+const getAuthors = async () => {
+    const authors = await db.autor.findAll()
+                    .then(results => {
+                        return results;
+                    });
+
+    return authors;
+}
+
 module.exports = {
-    getBooks
+    getBooks,
+    getAuthors
 }
