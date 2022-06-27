@@ -8,18 +8,26 @@
   </head>
   <body>
     <%- include('partials/nav.ejs') %>
+
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
 
-
-    <form action="/buscar" method="GET"> <!-- GET es el metodo predeterminado -->
+    <form action="/buscar" method="GET">
       <label>
         Buscar libro:
-      <input type="search" name="termino"> <!-- name es lo que parece en la url segun lo que escribe el usuario Ej: 
-      http://localhost:3000/buscar.js?termino=potter -->
+        <input type="search" name="termino">
       </label>
       <input type="submit" value="Buscar">
     </form>
-    
+
+    <h2>Nuestros libros</h2>
+    <ul>
+      <% libros.forEach(libro => { %>
+        <li><a href="/libro/<%= libro.id %>"><%= libro.titulo %> - <%= libro.autor.nombreCompleto %></a></li>
+      <% }) %>
+    </ul>
+
+
   </body>
 </html>
+ss
