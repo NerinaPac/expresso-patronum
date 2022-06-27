@@ -15,7 +15,6 @@ const getBooks = async () => {
     });
 
     return libros;
-
 }
 
 const getAuthors = async () => {

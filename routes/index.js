@@ -68,10 +68,3 @@ router.get('/contacto', (req, res) =>{
 res.render('pages/contacto')
 });
 module.exports = router;
-
-/* ejercitafcio = guardar en una variable lo que escribio el usuario en el campo y tirar un consolog */
-
-
-  
-  
-  
