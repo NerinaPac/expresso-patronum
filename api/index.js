@@ -1,5 +1,10 @@
+// Importamos los Operadores, que nos permiten hacer consultas mas interesantes (LIKE de SQL)
+const { Op } = require("sequelize");
+
 // Traemos la DB
 const db = require('../models');
+
+
 
 // Esta mejor visto. Es una funcion exportada como una constante.
 // Queremos hacer SELECT * FROM Libros
@@ -40,8 +45,24 @@ const getBookById = async (id) => {
     return book;
 };
 
+const findBookByTitle = async (termino) => {
+    const books = await db.libro.findAll({
+        where: {
+            titulo: { [Op.substring]: termino,}
+        }
+    }).then(result => {
+        return result;
+    });
+
+    return books;
+
+}
+
+
+
 module.exports = {
     getBooks,
     getAuthors,
-    getBookById
+    getBookById,
+    findBookByTitle
 }

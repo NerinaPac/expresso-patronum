@@ -66,15 +66,20 @@ router.post('/agregar-libro', (req, res) => {
 });
 
 /* GET nosotros page */
-router.get('/buscar', (req, res) => {
+router.get('/buscar', async (req, res) => {
+  
+
   // query
   // Guardar en una variable lo que escribió el usuario en el campo
-  let { termino } = req.query;
-  // let termino = req.query.termino;
-  console.log(termino);
+ let { termino } = req.query;
+ // let termino = req.query.termino;
+ console.log(termino);
   // Magia de conexión a DB SELECT
   // Mostrarlo en la terminal
-  res.send('Estas en buscar');
+  //res.send('Estas en buscar');
+  const resultados = await api.findBookByTitle(termino);
+  res.send(resultados);
+  
 });
 
 /* GET nosotros page */
