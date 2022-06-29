@@ -26,8 +26,9 @@ const getBooks = async () => {
  //include hay que tener necesidad de ponerlo por alguna razon, porque va a sumar en el js, y va a afectar el performance
 
 const getAuthors = async () => {
-    const authors = await db.autor.findAll()
-                    .then(results => {
+    const authors = await db.autor.findAll({
+                    order: ['nombreCompleto'],
+                    }).then(results => {
                         return results;
                     });
 
@@ -58,11 +59,20 @@ const findBookByTitle = async (termino) => {
 
 }
 
+const insertBook = async (titulo, precio, portada, autorId) => {
+    const libro = await db.libro.create({
+        titulo, precio, portada, autorId
+});
+return libro;
+
+}
+
 
 
 module.exports = {
     getBooks,
     getAuthors,
     getBookById,
-    findBookByTitle
+    findBookByTitle,
+    insertBook
 }

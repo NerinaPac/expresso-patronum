@@ -40,8 +40,10 @@ router.get('/autores', async (req, res) => {
 });
 
 /* GET agregar */
-router.get('/agregar', (req, res) => {
-  res.render('pages/agregar');
+router.get('/agregar', async (req, res) => {
+  // Conseguir los autores
+  const autores = await api.getAuthors();
+  res.render('pages/agregar', {autores});
 });
 
 /*
@@ -53,15 +55,19 @@ router.get('/agregar', (req, res) => {
 */
 
 /* POST agregar-libro */
-router.post('/agregar-libro', (req, res) => {
+router.post('/agregar-libro', async (req, res) => {
   // Conseguir lo que el usuario tipeó
   // Para levantar algo por método post tengo que usar
   // req.body
   console.log(req.body);
 
+  // titulo, rpoecio, portada, autorId
   let {titulo, autor, precio} = req.body;
 
-  res.send(`Agregaron ${titulo} ${autor} ${precio}`);
+  const libro = await api.insertBook(titulo, precio, '', autor);
+  console.log(libro);
+  res.redirect('/');
+  //res.send(`Agregaron ${titulo} ${autor} ${codigoPais} ${precio}`);
   // res.render('pages/agregar');
 });
 
